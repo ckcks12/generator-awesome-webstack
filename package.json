@@ -74,7 +74,9 @@
     "scripts": {
         "pretest": "eslint .",
         "precommit": "lint-staged",
-        "test": "jest"
+        "test": "jest",
+        "eslint": "eslint .",
+        "eslint-fix": "eslint --fix ."
     },
     "repository": "ckcks12/generator-awesome-webstack",
     "license": "MIT"
