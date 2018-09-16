@@ -121,4 +121,4 @@ $RECYCLE.BIN/
 
 # EXTRA
 dist/
-mysql/data
+**/mysql/data/*

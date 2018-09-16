@@ -5,4 +5,5 @@ docker run -it --rm \
     --name mysql \
     --net=host \
     -v `pwd`/mysql/conf.d:/etc/mysql/conf.d \
+    -v `pwd`/mysql/data:/var/lib/mysql \
     mysql:5.7
