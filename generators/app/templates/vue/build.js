@@ -3,7 +3,7 @@ const config = require('./webpack.config')
 const path = require('path')
 const rimraf = require('rimraf')
 
-rimraf(path.resolve(__dirname, '../dist'), (err) => {
+rimraf(path.resolve(__dirname, './dist'), (err) => {
     if (err) throw err
 
     webpack(config, (err, stats) => {

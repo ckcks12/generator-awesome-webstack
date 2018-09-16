@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 function resolve(dir) {
-    return path.join(__dirname, '../../src/vue', dir)
+    return path.join(__dirname, './', dir)
 }
 
 module.exports = {
