@@ -6,7 +6,7 @@ name="--name express"
 rm="--rm"
 net="--net=host"
 v="-v `pwd`/express:/code"
-e="-e"
+e=""
 img="node:alpine"
 cmd="echo command goes here"
 
