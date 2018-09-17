@@ -1,8 +1,8 @@
 #!/bin/bash
 
 docker run -it --rm \
-    --name webpack \
+    --name vue-webpack \
     --net=host \
     -v `pwd`/vue:/code \
-    node:10 \
+    node:alpine \
     npm --prefix /code run build
