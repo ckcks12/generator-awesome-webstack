@@ -1,0 +1,28 @@
+{
+    "version": "0.1",
+    "skeleton": {
+        "proxy": null,
+        "db": null,
+        "middle": null,
+        "js": null,
+        "css": null
+    },
+    "sets": {
+        "MySQL/Express": {
+            "db": "mysql",
+            "middle": "express"
+        },
+        "MySQL/Express/Vue": {
+            "db": "mysql",
+            "middle": "express",
+            "js": "vue"
+        }
+    },
+    "stacks": {
+        "proxy": [],
+        "db": ["mysql"],
+        "middle": ["express"],
+        "js": ["vue"],
+        "css": ["bootstrap"]
+    }
+}

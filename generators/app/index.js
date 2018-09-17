@@ -1,42 +1,57 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
+const Generator = require('yeoman-generator')
+// Const chalk = require('chalk')
+// const yosay = require('yosay')
+const stacks = require('./stacks.json')
 
 module.exports = class extends Generator {
-    prompting() {
-        // Have Yeoman greet the user.
-        this.log(
-            yosay(
-                `Welcome to the first-class ${chalk.red(
-                    'generator-awesome-webstack'
-                )} generator!`
-            )
-        );
+    async prompting() {
+        let stack = stacks.skeleton
+        let answer = null
+        let prompts = []
 
-        const prompts = [
+        answer = await this.prompt([
             {
-                type: 'confirm',
-                name: 'someAnswer',
-                message: 'Would you like to enable this option?',
-                default: true
+                type: 'list',
+                name: 'set',
+                message: 'Choose stack sets',
+                choices: Object.keys(stacks.sets).concat('other')
             }
-        ];
+        ])
 
-        return this.prompt(prompts).then(props => {
-            // To access props later use this.props.someAnswer;
-            this.props = props;
-        });
+        if (answer.set !== 'other') {
+            stack = Object.assign(stack, stacks.sets[answer.set])
+            this.stack = stack
+            return
+        }
+
+        for (let k of Object.keys(stacks.stacks)) {
+            prompts.push({
+                type: 'list',
+                name: k,
+                message: `Choose ${k} stack`,
+                choices: stacks.stacks[k].concat('none')
+            })
+        }
+
+        answer = await this.prompt(prompts)
+        for (let k of Object.keys(answer)) {
+            if (answer[k] === 'none') {
+                answer[k] = null
+            }
+        }
+
+        this.stack = answer
     }
 
     writing() {
-        this.fs.copy(
-            this.templatePath('dummyfile.txt'),
-            this.destinationPath('dummyfile.txt')
-        );
+        console.log(this.stack)
+        // This.fs.copy(
+        //     this.templatePath('dummyfile.txt'),
+        //     this.destinationPath('dummyfile.txt')
+        // )
     }
 
     install() {
-        this.installDependencies();
+        // This.installDependencies()
     }
-};
+}

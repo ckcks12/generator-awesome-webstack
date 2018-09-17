@@ -59,17 +59,11 @@
             "node": true
         },
         "rules": {
-            "prettier/prettier": [
+            "semi": [
                 "error",
-                {
-                    "singleQuote": true,
-                    "printWidth": 90
-                }
+                "never"
             ]
-        },
-        "plugins": [
-            "prettier"
-        ]
+        }
     },
     "scripts": {
         "pretest": "eslint .",
