@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-    res.render('index', {title: 'awesome webstack', message: `I like pug because it's damn simple`})
+    req.list.findAll().then((list) => {
+        res.render('index', {title: 'awesome webstack', list})
+    })
 })
 
 router.get('/add/:value', (req, res, next) => {
