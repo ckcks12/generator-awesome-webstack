@@ -15,6 +15,12 @@ Then generate your new project:
 ```bash
 yo awesome-webstack
 ```
+## Monitoring
+
+The basic monitoring of `docker` would help you a little bit. Also there are a lot of tools out there so have a look ma boy XD.
+```bash
+docker stats
+```
 
 ## License
 
