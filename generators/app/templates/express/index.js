@@ -38,6 +38,8 @@ if (process.env.NODE_ENV == 'development') {
     app.use(morgan('combined'))
 }
 
+app.set('view engine', 'pug')
+
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
