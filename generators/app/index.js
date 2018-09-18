@@ -44,14 +44,25 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        console.log(this.stack)
-        // This.fs.copy(
-        //     this.templatePath('dummyfile.txt'),
-        //     this.destinationPath('dummyfile.txt')
-        // )
+        for (let k of Object.keys(this.stack)) {
+            let name = this.stack[k]
+
+            if (k === 'css') continue
+            if (!name) continue
+
+            this.fs.copyTpl(
+                this.templatePath(name),
+                this.destinationPath(name),
+                this.stack
+            )
+        }
+        this.fs.copyTpl(
+            this.templatePath('bin'),
+            this.destinationPath('bin'),
+            this.stack
+        )
     }
 
     install() {
-        // This.installDependencies()
     }
 }
