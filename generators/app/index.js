@@ -1,7 +1,8 @@
 const Generator = require('yeoman-generator')
-// Const chalk = require('chalk')
-// const yosay = require('yosay')
 const stacks = require('./stacks.json')
+const chalk = require('chalk')
+const _ = require('lodash')
+
 
 module.exports = class extends Generator {
     async prompting() {
@@ -18,7 +19,7 @@ module.exports = class extends Generator {
             }
         ])
 
-        if (answer.set !== 'other') {
+        if (!_.isNil(answer.set) && answer.set !== 'other') {
             stack = Object.assign(stack, stacks.sets[answer.set])
             this.stack = stack
             return
@@ -28,39 +29,45 @@ module.exports = class extends Generator {
             prompts.push({
                 type: 'list',
                 name: k,
-                message: `Choose ${k} stack`,
-                choices: stacks.stacks[k].concat('none')
+                message: `Choose ${chalk.yellow(k)} stack`,
+                choices: _.keys(stacks.stacks[k]).concat('none')
             })
         }
 
         answer = await this.prompt(prompts)
-        for (let k of Object.keys(answer)) {
-            if (answer[k] === 'none') {
-                answer[k] = null
-            }
-        }
+        answer = _.omitBy(answer, (v) => v === 'none')
 
         this.stack = answer
     }
 
     writing() {
+        console.log(this.stack)
         for (let k of Object.keys(this.stack)) {
             let name = this.stack[k]
 
             if (k === 'css') continue
             if (!name) continue
 
+            let files = stacks.stacks[k][name]
+            if (files.length === 0) continue
+
+            for (let file of files) {
+                this.fs.copyTpl(
+                    this.templatePath(file),
+                    this.destinationPath(file),
+                    this.stack
+                )
+            }
+        }
+
+        let commonFiles = ['bin/install.sh', 'bin/start.sh', 'bin/shutdown.sh', '.gitignore']
+        for (let file of commonFiles) {
             this.fs.copyTpl(
-                this.templatePath(name),
-                this.destinationPath(name),
+                this.templatePath(file),
+                this.destinationPath(file),
                 this.stack
             )
         }
-        this.fs.copyTpl(
-            this.templatePath('bin'),
-            this.destinationPath('bin'),
-            this.stack
-        )
     }
 
     install() {

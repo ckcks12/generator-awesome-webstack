@@ -19,10 +19,26 @@
         }
     },
     "stacks": {
-        "proxy": [],
-        "db": ["mysql"],
-        "middle": ["express"],
-        "js": ["vue"],
-        "css": ["bootstrap"]
+        "proxy": {},
+        "db": {
+            "mysql": [
+                "bin/start-mysql.sh",
+                "mysql/conf.d/mysql.cnf",
+                "mysql/data/.gitkeep"
+            ]
+        },
+        "middle": {
+            "express": [
+                "bin/start-express.sh",
+                "express/index.js",
+                "express/package.json",
+                "express/views/index.pug",
+                "express/routes/index.js"
+            ]
+        },
+        "js": {
+            "vue": []
+        },
+        "css": {}
     }
 }
