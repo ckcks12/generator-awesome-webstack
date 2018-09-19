@@ -15,11 +15,42 @@ Then generate your new project:
 ```bash
 yo awesome-webstack
 ```
+
+## Available Web Stacks
+
+These stacks are classified into 5 groups according to their rules.
+
+```
+proxy
+    nginx
+db
+    mysql
+middle
+    express
+js
+    vue
+css
+    bootstrap
+```
+
+You can choose any combination you want to build. e.g., `nginx/mysql/express` or `apache/redis/tomcat`.
+
 ## Monitoring
 
 The basic monitoring of `docker` would help you a little bit. Also there are a lot of tools out there so have a look ma boy XD.
 ```bash
 docker stats
+```
+
+## Contribute
+
+It's hard to implement every popular web stacks by myself. So give me your pull requests for adding web stacks. There are only three files to edit for adding new web stacks.
+
+For example, `express`
+```
+express/
+bin/start-express.sh
+stacks.json
 ```
 
 ## License
