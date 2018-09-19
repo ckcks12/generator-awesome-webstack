@@ -41,7 +41,6 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        console.log(this.stack)
         for (let k of Object.keys(this.stack)) {
             let name = this.stack[k]
 
