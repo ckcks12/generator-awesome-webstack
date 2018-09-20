@@ -37,7 +37,17 @@
             ]
         },
         "js": {
-            "vue": []
+            "vue": [
+                "bin/start-vue-webpack.sh",
+                "vue/.babelrc",
+                "vue/index.html",
+                "vue/package.json",
+                "vue/webpack.config.js",
+                "vue/src/App.vue",
+                "vue/src/index.js",
+                "vue/src/assets/logo.png",
+                "vue/src/components/HelloWorld.vue"
+            ]
         },
         "css": {}
     }
