@@ -16,6 +16,15 @@ Then generate your new project:
 yo awesome-webstack
 ```
 
+## Web Architectures
+
+### Rich Architecture 
+![](https://i.imgur.com/nA0kqwS.png)
+### Simple Architecture
+![](https://i.imgur.com/x1YvC7H.png)
+### Scale out & Batch working Architecture
+![](https://i.imgur.com/1V9n5Mj.png)
+
 ## Available Web Stacks
 
 These stacks are classified into 5 groups according to their rules.
